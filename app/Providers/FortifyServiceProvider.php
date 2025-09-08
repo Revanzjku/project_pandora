@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
 
+use function Ramsey\Uuid\v1;
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
@@ -46,11 +48,11 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::loginView(function () {
-            return 'ini halaman login';
+            return view('auth.login');
         });
 
         Fortify::registerView(function () {
-            return 'ini halaman register';
+            return view('auth.register');
         });
     }
 }

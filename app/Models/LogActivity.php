@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AccessHistory extends Model
+class LogActivity extends Model
 {
     //
 }

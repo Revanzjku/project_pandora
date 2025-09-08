@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('access_histories', function (Blueprint $table) {
+        Schema::create('log_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('ebook_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('restrict');
+            $table->foreignId('ebook_id')->constrained()->onDelete('restrict');
+            $table->enum('activity_type', ['read', 'download', 'cite']);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('access_histories');
+        Schema::dropIfExists('log_activities');
     }
 };
