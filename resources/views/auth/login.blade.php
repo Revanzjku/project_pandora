@@ -1,31 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - PANDORA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, .heading { font-family: 'Poppins', sans-serif; }
-    </style>
-</head>
-<body class="bg-gradient-to-b from-white to-slate-50 text-slate-800 min-h-screen">
-
-    <!-- Header -->
-    <header class="border-b border-slate-200/60 bg-white/80 backdrop-blur">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="h-16 flex items-center justify-between">
-                <a href="/" class="flex items-center gap-2">
-                    <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 grid place-items-center text-white font-bold">P</div>
-                    <span class="text-xl font-bold text-slate-900">PANDORA</span>
-                </a>
-                <a href="/" class="text-sm text-slate-600 hover:text-sky-700">← Kembali ke Beranda</a>
-            </div>
-        </div>
-    </header>
-
+@extends('layouts.app')
+@section('content')
+    <x-navbar />
     <!-- Main Content -->
     <main class="flex-1 flex items-center justify-center px-4 py-12">
         <div class="w-full max-w-md">
@@ -68,6 +43,4 @@
             </div>
         </div>
     </main>
-
-</body>
-</html>
+@endsection
