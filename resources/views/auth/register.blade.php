@@ -19,6 +19,9 @@
                         <input type="text" id="first_name" name="first_name" required
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="Masukkan nama depan">
+                        @error('first_name')
+                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
@@ -26,6 +29,9 @@
                         <input type="text" id="last_name" name="last_name"
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="Masukkan nama belakang">
+                        @error('last_name')
+                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
@@ -33,6 +39,9 @@
                         <input type="text" id="username" name="username" required
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="Masukkan username">
+                        @error('username')
+                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
@@ -40,6 +49,9 @@
                         <input type="email" id="email" name="email" required
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="nama@email.com">
+                        @error('email')
+                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     
                     <div>
@@ -47,6 +59,9 @@
                         <input type="password" id="password" name="password" required
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="Minimal 8 karakter">
+                        @error('password')
+                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
@@ -54,6 +69,9 @@
                         <input type="password" id="password_confirmation" name="password_confirmation" required
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="Ulangi password">
+                        @error('password_confirmation')
+                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <button type="submit"

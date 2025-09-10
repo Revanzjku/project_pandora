@@ -19,6 +19,9 @@
                         <input type="email" id="email" name="email" required
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="nama@email.com">
+                        @error('email')
+                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     
                     <div>
@@ -26,6 +29,9 @@
                         <input type="password" id="password" name="password" required
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="Masukkan password">
+                        @error('password')
+                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <button type="submit"
