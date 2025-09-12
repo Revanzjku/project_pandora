@@ -26,6 +26,10 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard', ['title' => '- Dashboard']);
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/profile', function () {
-    return view('pages.profil');
-})->middleware(['auth'])->name('profile');
+Route::get('/setting', function () {
+    return view('pages.setting', ['title' => '- Pengaturan Akun']);
+})->middleware(['auth'])->name('setting');
+
+// Route::get('/profile', function () {
+//     return view('pages.profil');
+// })->middleware(['auth'])->name('profile');

@@ -22,12 +22,12 @@
                     @else
                         <div class="hidden md:block relative" x-data="{ open:false }">
                             <button @click="open=!open" class="flex items-center gap-2">
-                                <img src="{{ Auth::user()->profile_picture ?? 'https://ui-avatars.com/api/?name='.urlencode(Auth::user()->first_name).'&background=0EA5E9&color=ffffff' }}" alt="Avatar" class="w-10 h-10 rounded-full border border-sky-200">
+                                <img src="{{ 'https://ui-avatars.com/api/?name='.urlencode(Auth::user()->name).'&background=0EA5E9&color=ffffff' }}" alt="Avatar" class="w-10 h-10 rounded-full border border-sky-200">
                             </button>
                             <div x-cloak x-show="open" @click.outside="open=false" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg ring-1 ring-slate-200 p-1">
-                                <div class="px-3 py-2 text-sm text-slate-600">Halo, <span class="font-medium text-slate-800">{{ Auth::user()->first_name }}</span></div>
-                                <a href="/dashboard" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Dashboard</a>
-                                <a href="/profile" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Profil</a>
+                                <div class="px-3 py-2 text-sm text-slate-600">Halo, <span class="font-medium text-slate-800">{{ Auth::user()->name }}</span></div>
+                                <a href="/setting" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Pengaturan Akun</a>
+                                {{-- <a href="/profile" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Profil</a> --}}
                                 <form action="/logout" method="POST" class="mt-1">@csrf
                                     <button type="submit" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-50 text-red-600">Logout</button>
                                 </form>
@@ -58,14 +58,14 @@
                 <a href="/login" class="block px-3 py-2 rounded-lg bg-sky-600 text-white text-center hover:bg-sky-700">Login</a>
             @else
                 <div class="flex items-center gap-3 px-1 py-2">
-                    <img src="{{ Auth::user()->profile_picture ?? 'https://ui-avatars.com/api/?name='.urlencode(Auth::user()->first_name).'&background=0EA5E9&color=ffffff' }}" alt="Avatar" class="w-10 h-10 rounded-full border border-sky-200">
+                    <img src="{{ 'https://ui-avatars.com/api/?name='.urlencode(Auth::user()->name).'&background=0EA5E9&color=ffffff' }}" alt="Avatar" class="w-10 h-10 rounded-full border border-sky-200">
                     <div>
-                        <div class="text-sm font-medium text-slate-800">{{ Auth::user()->first_name }}</div>
+                        <div class="text-sm font-medium text-slate-800">{{ Auth::user()->name }}</div>
                         <div class="text-xs text-slate-500">Pengguna</div>
                     </div>
                 </div>
-                <a href="/dashboard" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Dashboard</a>
-                <a href="/profile" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Profil</a>
+                <a href="/setting" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Pengaturan Akun</a>
+                {{-- <a href="/profile" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Profil</a> --}}
                 <form action="/logout" method="POST" class="pt-1">@csrf
                     <button type="submit" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-50 text-red-600">Logout</button>
                 </form>

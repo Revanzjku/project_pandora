@@ -15,31 +15,11 @@
                 <form action="{{ route('register.store')}}" method="POST" class="space-y-6">
                     @csrf
                     <div>
-                        <label for="first_name" class="block text-sm font-medium text-slate-700 mb-2">Nama Depan</label>
-                        <input type="text" id="first_name" name="first_name" required
+                        <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Nama </label>
+                        <input type="text" id="name" name="name" required
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
-                            placeholder="Masukkan nama depan">
-                        @error('first_name')
-                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div>
-                        <label for="last_name" class="block text-sm font-medium text-slate-700 mb-2">Nama Belakang</label>
-                        <input type="text" id="last_name" name="last_name"
-                            class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
-                            placeholder="Masukkan nama belakang">
-                        @error('last_name')
-                            <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div>
-                        <label for="username" class="block text-sm font-medium text-slate-700 mb-2">Username</label>
-                        <input type="text" id="username" name="username" required
-                            class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
-                            placeholder="Masukkan username">
-                        @error('username')
+                            placeholder="Masukkan nama">
+                        @error('name')
                             <p class="text-sm text-red-500 mt-2">{{ $message }}</p>
                         @enderror
                     </div>
