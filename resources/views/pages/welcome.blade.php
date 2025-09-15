@@ -14,15 +14,6 @@
                         </h1>
                         <p class="mt-4 text-slate-600 max-w-xl">Temukan ribuan e-book legal, mudah diakses, dan ramah pengguna. PANDORA dirancang mobile-first untuk pengalaman membaca terbaik di mana saja.</p>
 
-                        <!-- Search Bar -->
-                        <form action="/katalog" method="GET" class="mt-6">
-                            <div class="flex items-center gap-2 bg-white shadow-sm ring-1 ring-slate-200 rounded-xl px-3 py-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                                <input type="text" name="q" placeholder="Cari judul, penulis, atau kata kunci" class="w-full bg-transparent focus:outline-none text-slate-700 placeholder-slate-400">
-                                <button class="inline-flex whitespace-nowrap items-center px-3 py-2 rounded-lg bg-sky-600 text-white text-sm hover:bg-sky-700">Cari</button>
-                            </div>
-                        </form>
-
                         <!-- Badges / Highlights -->
                         <div class="mt-6 flex flex-wrap gap-2">
                             <span class="px-3 py-1.5 rounded-full text-xs bg-sky-50 text-sky-700 ring-1 ring-sky-100">Domain Publik</span>
@@ -88,4 +79,3 @@
         </section>
     <x-footer />
 @endsection
-

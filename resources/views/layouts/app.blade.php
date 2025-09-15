@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PANDORA {{ $title ?? '— Perpustakaan Digital Domain Publik' }}</title>
+    <title>{{ $title ?? '— Perpustakaan Digital Domain Publik' }} - PANDORA</title>
     @vite('resources/css/app.css')
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
