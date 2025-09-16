@@ -23,11 +23,22 @@ Route::middleware('auth')->group(function () {
         return view('pages.reader');
     })->name('reader');
 
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard', ['title' => 'Dashboard']);
-    })->name('dashboard');
-
     Route::get('/profile', function () {
         return view('pages.profil', ['title' => 'Pengaturan Profil']);
-    })->name('profile')->middleware('role:user');
+    })
+    ->name('profile')
+    ->middleware('role:user');
+
+    Route::delete('/profile', [\App\Http\Controllers\UserAccountDelete::class, 'destroy'])
+    ->name('user.destroy')
+    ->middleware('role:user'); //User Delete Account
+
+    // Admin Section Routes
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', function () {
+            return view('pages.dashboard', ['title' => 'Dashboard']);
+        })->name('dashboard');
+
+        Route::resource('ebooks', \App\Http\Controllers\EbookController::class);
+    });
 });

@@ -16,7 +16,7 @@
     </style>
     @livewireStyles
 </head>
-    <body class="bg-gradient-to-b from-white to-slate-50 text-slate-800" @if(request()->routeIs('dashboard')) 
+    <body class="bg-gradient-to-b from-white to-slate-50 text-slate-800" @if(Route::is('admin.*')) 
             x-data="{ 
                 sidebarOpen: window.innerWidth >= 1024,  // kalau >=1024px (lg breakpoint) default terbuka
                 userMenu: false 

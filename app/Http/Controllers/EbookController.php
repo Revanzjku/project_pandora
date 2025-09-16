@@ -12,7 +12,7 @@ class EbookController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.ebook.index', ['title' => 'Manajemen Ebook']);
     }
 
     /**

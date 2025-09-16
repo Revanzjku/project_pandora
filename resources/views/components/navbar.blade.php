@@ -10,9 +10,9 @@
             @if (!request()->is('login') && !request()->is('register'))
                 <!-- Nav (desktop) -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="/" class="hover:text-sky-700">Beranda</a>
-                    <a href="/katalog" class="hover:text-sky-700">Katalog</a>
-                    <a href="/tentang" class="hover:text-sky-700">Tentang</a>
+                    <a href="{{ route('home') }}" class="hover:text-sky-700">Beranda</a>
+                    <a href="{{ route('katalog') }}" class="hover:text-sky-700">Katalog</a>
+                    <a href="{{ route('tentang') }}" class="hover:text-sky-700">Tentang</a>
                 </nav>
 
                 <!-- Right (auth / cta) -->
@@ -25,9 +25,9 @@
                             <div x-cloak x-show="open" @click.outside="open=false" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg ring-1 ring-slate-200 p-1">
                                 <div class="px-3 py-2 text-sm text-slate-600">Halo, <span class="font-medium text-slate-800">{{ Auth::user()->name }}</span></div>
                                 @if (Auth::user()->role === 'admin')
-                                    <a href="/dashboard" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Dashboard Admin</a>
+                                    <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Dashboard Admin</a>
                                 @else
-                                    <a href="/profile" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Pengaturan Profil</a>
+                                    <a href="{{ route('profile') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Pengaturan Profil</a>
                                 @endif
                                 <form action="/logout" method="POST" class="mt-1">@csrf
                                     <button type="submit" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-50 text-red-600">Logout</button>
@@ -49,9 +49,9 @@
     <!-- Mobile Drawer -->
     <div x-cloak x-show="mobileOpen" x-transition class="md:hidden border-t border-slate-200 bg-white">
         <div class="px-4 py-4 space-y-2">
-            <a href="/" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Beranda</a>
-            <a href="/katalog" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Katalog</a>
-            <a href="/tentang" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Tentang</a>
+            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Beranda</a>
+            <a href="{{ route('katalog') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Katalog</a>
+            <a href="{{ route('tentang') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Tentang</a>
             <div class="border-t my-2"></div>
             @auth
                 <div class="flex items-center gap-3 px-1 py-2">
@@ -62,9 +62,9 @@
                     </div>
                 </div>
                 @if (Auth::user()->role === 'admin')
-                    <a href="/dashboard" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Dashboard Admin</a>
+                    <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Dashboard Admin</a>
                 @else
-                    <a href="/profile" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Pengaturan Profil</a>
+                    <a href="{{ route('profile') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Pengaturan Profil</a>
                 @endif
                 <form action="/logout" method="POST" class="pt-1">
                     @csrf
