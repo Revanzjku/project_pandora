@@ -17,20 +17,12 @@
     @livewireStyles
 </head>
     <body class="bg-gradient-to-b from-white to-slate-50 text-slate-800" @if(Route::is('admin.*')) 
-            x-data="{ 
-                sidebarOpen: window.innerWidth >= 1024,  // kalau >=1024px (lg breakpoint) default terbuka
-                userMenu: false 
-            }"
-            x-init="
-                // Update otomatis saat resize
-                window.addEventListener('resize', () => {
-                    sidebarOpen = window.innerWidth >= 1024;
-                });
-            "
+            x-data="{ sidebarOpen: false }"
         @endif>
 
         @yield('content')
 
         @livewireScripts
+        @stack('scripts')
     </body>
 </html>

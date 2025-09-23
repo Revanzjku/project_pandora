@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ebooks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->onDelete('restrict')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('restrict');
             $table->string('title');
             $table->string('author');
             $table->integer('year');

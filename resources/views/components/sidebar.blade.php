@@ -18,29 +18,40 @@
             </button>
         </div>
         <nav class="space-y-2">
-            <a href="/admin/ebooks" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-700">
+            <a href="/admin/dashboard" class="flex items-center gap-3 px-3 py-2 rounded-lg
+           {{ request()->is('admin/dashboard') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                </svg>
+                Dashboard
+            </a>
+            <a href="/admin/ebooks" class="flex items-center gap-3 px-3 py-2 rounded-lg 
+            {{ Route::is('admin.ebooks.*') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                 </svg>
                 Kelola Ebook
             </a>
-            <a href="/admin/users" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+            <a href="/admin/categories" class="flex items-center gap-3 px-3 py-2 rounded-lg
+            {{ Route::is('admin.categories.*') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
                 </svg>
-                Kelola User
+                Kelola Kategori
             </a>
-            <a href="/admin/statistics" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-700">
+            <a href="/admin/users" class="flex items-center gap-3 px-3 py-2 rounded-lg 
+            {{ Route::is('admin.users.*') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+                Kelola Pengguna
+            </a>
+            <a href="/admin/statistics" class="flex items-center gap-3 px-3 py-2 rounded-lg 
+            {{ request()->is('admin/statistics') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                 </svg>
-                Statistik Penggunaan
-            </a>
-            <a href="/admin/activities" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                Riwayat Aktivitas User
+                Statistik Penggunjung
             </a>
         </nav>
     </div>
@@ -60,29 +71,41 @@
                 </button>
             </div>
             <nav class="space-y-2">
-                <a href="/admin/ebooks" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-700">
+                <a href="/admin/dashboard" class="flex items-center gap-3 px-3 py-2 rounded-lg 
+                {{ request()->is('admin/dashboard') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="/admin/ebooks" class="flex items-center gap-3 px-3 py-2 rounded-lg 
+                {{ Route::is('admin.ebooks.*') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                     </svg>
                     Kelola Ebook
                 </a>
-                <a href="/admin/users" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                <a href="/admin/categories" class="flex items-center gap-3 px-3 py-2 rounded-lg 
+                {{ Route::is('admin.categories.*') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
                     </svg>
-                    Kelola User
+                    Kelola Kategori
                 </a>
-                <a href="/admin/statistics" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-700">
+                <a href="/admin/users" class="flex items-center gap-3 px-3 py-2 rounded-lg 
+                {{ Route::is('admin.users.*') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+
+                    Kelola Pengguna
+                </a>
+                <a href="/admin/statistics" class="flex items-center gap-3 px-3 py-2 rounded-lg 
+                {{ request()->is('admin/statistics') ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-sky-50 hover:text-sky-700' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                     </svg>
-                    Statistik Penggunaan
-                </a>
-                <a href="/admin/activities" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    Riwayat Aktivitas User
+                    Statistik Penggunjung
                 </a>
             </nav>
         </div>

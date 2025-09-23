@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Ebook;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -30,6 +32,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'edward@example.com',
             'password' => Hash::make('user1234#$'),
             'role' => 'user',
+        ]);
+
+        // Categories and Ebooks
+        Category::create([
+            'name' => 'Science Fiction',
+        ]);
+
+        Ebook::factory(10)->create([
+            'category_id' => 1, // Assuming the first category has ID 1
         ]);
     }
 }

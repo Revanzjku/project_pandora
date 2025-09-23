@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome', ['title' => 'Perpustakaan Digital Domain Publik Ramah Pengguna']);
+})->name('welcome');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('pages.welcome', ['title' => 'Perpustakaan Digital Domain Publik Ramah Pengguna']);
+    Route::get('/home', function () {
+        return view('pages.home', ['title' => 'HOME']);
     })->name('home');
 
     Route::get('/katalog', function () {
@@ -15,10 +19,6 @@ Route::middleware('auth')->group(function () {
         return view('pages.tentang', ['title' => 'Tentang Kami']);
     })->name('tentang');
 
-    Route::get('/detail', function () {
-        return view('pages.detail');
-    })->name('detail');
-
     Route::get('/reader/{title}', function () {
         return view('pages.reader');
     })->name('reader');
@@ -26,12 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', function () {
         return view('pages.profil', ['title' => 'Pengaturan Profil']);
     })
-    ->name('profile')
-    ->middleware('role:user');
+    ->name('profile');
 
     Route::delete('/profile', [\App\Http\Controllers\UserAccountDelete::class, 'destroy'])
-    ->name('user.destroy')
-    ->middleware('role:user'); //User Delete Account
+    ->name('user.destroy'); //User Delete Account
 
     // Admin Section Routes
     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -39,6 +37,16 @@ Route::middleware('auth')->group(function () {
             return view('pages.dashboard', ['title' => 'Dashboard']);
         })->name('dashboard');
 
-        Route::resource('ebooks', \App\Http\Controllers\EbookController::class);
+        Route::resource('ebooks', \App\Http\Controllers\Admin\EbookController::class)->except(['show']);
+        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['show']);
+        Route::get('/statistics', function () {
+            return view('admin.statistik', ['title' => 'Statistik Pengunjung',
+                                                        'dibaca' => 320,
+                                                        'didownload' => 180,
+                                                        'dikutip' => 75,
+                                                        'pengguna' => 2341,]);
+        })->name('statistics');
+        // Route::get('/history', function);
     });
 });
