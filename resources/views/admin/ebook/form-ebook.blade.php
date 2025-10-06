@@ -69,9 +69,11 @@
                         </div>
 
                         <div>
-                            <label for="file_path" class="block text-sm font-medium text-slate-700 mb-1">File Ebook</label>
-                            <input type="file" name="ebook_file_path" id="file_path"
-                                   class="block w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-medium file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                            <label for="ebook_file_path" class="block text-sm font-medium text-slate-700 mb-1">
+                                File Ebook (HTML/ZIP)
+                            </label>
+                            <input type="file" name="ebook_file_path" id="ebook_file_path"
+                                class="block w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-medium file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
                             @error('ebook_file_path')
                                 <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                             @enderror
@@ -79,7 +81,25 @@
                                 <p class="mt-2 text-sm text-slate-600">
                                     File saat ini:
                                     <a href="{{ asset('storage/' . $ebook->ebook_file_path) }}" target="_blank"
-                                       class="text-sky-600 hover:underline">Unduh File</a>
+                                    class="text-sky-600 hover:underline">Unduh File</a>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div>
+                            <label for="download_path" class="block text-sm font-medium text-slate-700 mb-1">
+                                File Download (EPUB/PDF)
+                            </label>
+                            <input type="file" name="download_path" id="download_path"
+                                class="block w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-medium file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                            @error('download_path')
+                                <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                            @enderror
+                            @if (isset($ebook) && $ebook->download_path)
+                                <p class="mt-2 text-sm text-slate-600">
+                                    File saat ini:
+                                    <a href="{{ asset('storage/' . $ebook->download_path) }}" target="_blank"
+                                    class="text-sky-600 hover:underline">Unduh File</a>
                                 </p>
                             @endif
                         </div>

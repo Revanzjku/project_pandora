@@ -89,10 +89,9 @@
                             <div class="text-xs text-slate-500">{{ ucfirst(Auth::user()->role) }}</div>
                         </div>
                     </div>
+                    <a href="{{ route('profile') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Pengaturan Profil</a>
                     @if (Auth::user()->role === 'admin')
-                        <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Dashboard Admin</a>
-                    @else
-                        <a href="{{ route('profile') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Pengaturan Profil</a>
+                        <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50">Dashboard Admin</a>                        
                     @endif
                     <form action="/logout" method="POST" class="pt-1">
                         @csrf

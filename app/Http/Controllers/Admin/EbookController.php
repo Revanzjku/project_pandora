@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Ebook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use ZipArchive;
 use App\Http\Controllers\Controller;
 
 class EbookController extends Controller
@@ -14,7 +16,7 @@ class EbookController extends Controller
     {
         return view('admin.ebook.index', [
             'title' => 'Manajemen Ebook',
-            'ebooks' => Ebook::with('category')->latest()->paginate(5)
+            'ebooks' => Ebook::with('category')->latest()->paginate(30),
         ]);
     }
 
@@ -28,7 +30,6 @@ class EbookController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi
         $validated = $request->validate([
             'title'             => 'required|string|max:255',
             'author'            => 'required|string|max:255',
@@ -36,20 +37,51 @@ class EbookController extends Controller
             'description'       => 'nullable|string|max:5000',
             'category_id'       => 'nullable|exists:categories,id',
             'cover_image_path'  => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'ebook_file_path'   => 'required|mimes:pdf,epub|max:51200', // max 50MB
+            'ebook_file_path'   => 'required|mimes:zip|max:51200',
+            'download_path'     => 'required|mimes:epub,pdf|max:51200',
         ]);
 
-        // Upload cover jika ada
+        // Cover
         if ($request->hasFile('cover_image_path')) {
             $validated['cover_image_path'] = $request->file('cover_image_path')->store('ebooks/covers', 'public');
         }
 
-        // Upload file ebook
-        if ($request->hasFile('ebook_file_path')) {
-            $validated['ebook_file_path'] = $request->file('ebook_file_path')->store('ebooks/files', 'public');
+        if ($request->hasFile('download_path')) {
+            $path = $request->file('download_path')->store('ebooks/downloads', 'public');
+            $validated['download_path'] = $path;
         }
 
-        Ebook::create($validated);
+        // Buat record dulu biar dapet ID
+        $ebook = Ebook::create($validated);
+
+        // Proses ZIP → extract ke folder per ebook
+        if ($request->hasFile('ebook_file_path')) {
+            $zip = new ZipArchive;
+            $zipPath = $request->file('ebook_file_path')->storeAs('temp', uniqid() . '.zip', 'public');
+            $extractPath = storage_path("app/public/ebooks/files/{$ebook->id}");
+
+            // Pastikan folder bersih
+            if (File::exists($extractPath)) {
+                File::deleteDirectory($extractPath);
+            }
+            File::makeDirectory($extractPath, 0755, true);
+
+            if ($zip->open(storage_path("app/public/{$zipPath}")) === true) {
+                $zip->extractTo($extractPath);
+                $zip->close();
+            }
+
+            Storage::disk('public')->delete($zipPath);
+
+            // Cari file html utama
+            $htmlFiles = File::files($extractPath);
+            $htmlFile = collect($htmlFiles)->first(fn($file) => $file->getExtension() === 'html');
+
+            if ($htmlFile) {
+                $relativePath = "ebooks/files/{$ebook->id}/" . $htmlFile->getFilename();
+                $ebook->update(['ebook_file_path' => $relativePath]);
+            }
+        }
 
         return redirect()->route('admin.ebooks.index')
             ->with('success', 'Ebook berhasil ditambahkan!');
@@ -66,7 +98,6 @@ class EbookController extends Controller
 
     public function update(Request $request, Ebook $ebook)
     {
-        // Validasi
         $validated = $request->validate([
             'title'             => 'required|string|max:255',
             'author'            => 'required|string|max:255',
@@ -74,10 +105,11 @@ class EbookController extends Controller
             'description'       => 'nullable|string|max:5000',
             'category_id'       => 'nullable|exists:categories,id',
             'cover_image_path'  => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'ebook_file_path'   => 'nullable|mimes:pdf,epub|max:51200', // ← tidak wajib saat update
+            'ebook_file_path'   => 'nullable|mimes:zip|max:51200',
+            'download_path'     => 'nullable|mimes:epub,pdf|max:51200',
         ]);
 
-        // Update cover jika ada file baru
+        // Cover
         if ($request->hasFile('cover_image_path')) {
             if ($ebook->cover_image_path) {
                 Storage::disk('public')->delete($ebook->cover_image_path);
@@ -85,12 +117,40 @@ class EbookController extends Controller
             $validated['cover_image_path'] = $request->file('cover_image_path')->store('ebooks/covers', 'public');
         }
 
-        // Update file ebook jika ada file baru
-        if ($request->hasFile('ebook_file_path')) {
-            if ($ebook->ebook_file_path) {
-                Storage::disk('public')->delete($ebook->ebook_file_path);
+        // Download file
+        if ($request->hasFile('download_path')) {
+            if ($ebook->download_path) {
+                Storage::disk('public')->delete($ebook->download_path);
             }
-            $validated['ebook_file_path'] = $request->file('ebook_file_path')->store('ebooks/files', 'public');
+            $path = $request->file('download_path')->store('ebooks/downloads', 'public');
+            $validated['download_path'] = $path;
+        }
+
+        // ZIP baru
+        if ($request->hasFile('ebook_file_path')) {
+            $zip = new ZipArchive;
+            $zipPath = $request->file('ebook_file_path')->storeAs('temp', uniqid() . '.zip', 'public');
+            $extractPath = storage_path("app/public/ebooks/files/{$ebook->id}");
+
+            if (File::exists($extractPath)) {
+                File::deleteDirectory($extractPath);
+            }
+            File::makeDirectory($extractPath, 0755, true);
+
+            if ($zip->open(storage_path("app/public/{$zipPath}")) === true) {
+                $zip->extractTo($extractPath);
+                $zip->close();
+            }
+
+            Storage::disk('public')->delete($zipPath);
+
+            // Cari file html utama
+            $htmlFiles = File::files($extractPath);
+            $htmlFile = collect($htmlFiles)->first(fn($file) => $file->getExtension() === 'html');
+
+            if ($htmlFile) {
+                $validated['ebook_file_path'] = "ebooks/files/{$ebook->id}/" . $htmlFile->getFilename();
+            }
         }
 
         $ebook->update($validated);
@@ -104,8 +164,14 @@ class EbookController extends Controller
         if ($ebook->cover_image_path) {
             Storage::disk('public')->delete($ebook->cover_image_path);
         }
+        if ($ebook->download_path) {
+            Storage::disk('public')->delete($ebook->download_path);
+        }
         if ($ebook->ebook_file_path) {
-            Storage::disk('public')->delete($ebook->ebook_file_path);
+            $folder = storage_path("app/public/ebooks/files/{$ebook->id}");
+            if (File::exists($folder)) {
+                File::deleteDirectory($folder);
+            }
         }
 
         $ebook->delete();

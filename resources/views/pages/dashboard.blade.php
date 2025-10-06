@@ -74,28 +74,168 @@
                         </div>
                     </div>
 
-                    <!-- New Books Section -->
-                    <div class="mb-8">
-                        <h2 class="text-xl font-bold text-slate-900 mb-4">Buku Baru yang Ditambahkan</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @for ($i = 1; $i <= 6; $i++)
-                                <div class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200/60 p-4">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-16 h-20 bg-slate-200 rounded-lg"></div>
-                                        <div>
-                                            <h3 class="text-sm font-bold text-slate-900">Judul Buku {{ $i }}</h3>
-                                            <p class="text-xs text-slate-600">Penulis {{ $i }}</p>
-                                        </div>
+                    <!-- User Registration Statistics Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <!-- Monthly Registration Chart -->
+                        <div class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200/60 p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <div>
+                                    <h2 class="text-xl font-bold text-slate-900">Registrasi Pengguna Bulanan</h2>
+                                    <p class="text-sm text-slate-600 mt-1">Data registrasi 12 bulan terakhir</p>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-3 h-3 bg-sky-500 rounded-full"></div>
+                                    <span class="text-slate-600">Pengguna Baru</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Chart Container -->
+                            <div class="relative h-80">
+                                <canvas id="userRegistrationChart" class="w-full h-full"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Registration Summary -->
+                        <div class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200/60 p-6">
+                            <h2 class="text-xl font-bold text-slate-900 mb-6">Ringkasan Statistik</h2>
+                            
+                            <div class="space-y-6">
+                                <!-- This Month -->
+                                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-sky-50 to-cyan-50 rounded-xl">
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-600">Bulan Ini</p>
+                                        <p class="text-2xl font-bold text-slate-900">248</p>
+                                        <p class="text-xs text-green-600 font-medium">↑ 12% dari bulan lalu</p>
                                     </div>
-                                    <div class="mt-4">
-                                        <a href="#" class="text-sm text-sky-600 hover:underline">Lihat Detail</a>
+                                    <div class="w-12 h-12 rounded-xl bg-sky-100 grid place-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                                        </svg>
                                     </div>
                                 </div>
-                            @endfor
+
+                                <!-- Average per Month -->
+                                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-600">Rata-rata per Bulan</p>
+                                        <p class="text-2xl font-bold text-slate-900">195</p>
+                                        <p class="text-xs text-slate-500">Dalam 12 bulan terakhir</p>
+                                    </div>
+                                    <div class="w-12 h-12 rounded-xl bg-emerald-100 grid place-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!-- Peak Month -->
+                                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-600">Bulan Tertinggi</p>
+                                        <p class="text-2xl font-bold text-slate-900">312</p>
+                                        <p class="text-xs text-slate-500">Januari 2025</p>
+                                    </div>
+                                    <div class="w-12 h-12 rounded-xl bg-indigo-100 grid place-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
+
+        <!-- Chart.js Script -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+        <script>
+            // User Registration Chart
+            const ctx = document.getElementById('userRegistrationChart').getContext('2d');
+            
+            // Sample data - replace with actual data from your backend
+            const monthlyData = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Pengguna Baru',
+                    data: [312, 189, 245, 198, 167, 223, 178, 234, 267, 198, 221, 248],
+                    borderColor: 'rgb(14, 165, 233)',
+                    backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: 'rgb(14, 165, 233)',
+                    pointBorderColor: 'white',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: monthlyData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: 'white',
+                            bodyColor: 'white',
+                            borderColor: 'rgba(14, 165, 233, 0.8)',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y} pengguna baru`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)',
+                                borderDash: [5, 5]
+                            },
+                            ticks: {
+                                color: '#64748b',
+                                font: {
+                                    size: 12
+                                },
+                                callback: function(value) {
+                                    return value;
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#64748b',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            };
+
+            new Chart(ctx, config);
+        </script>
 @endsection

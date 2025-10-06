@@ -23,6 +23,8 @@ class EbookFactory extends Factory
             'year' => fake()->year(),
             'cover_image_path' => null,
             'ebook_file_path' => fake()->filePath(),
+            'download_path' => fake()->url(),
+            'slug' => fake()->slug(),
             'description' => fake()->paragraph(),
         ];
     }

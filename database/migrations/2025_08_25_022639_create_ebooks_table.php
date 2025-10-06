@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('author');
             $table->integer('year');
             $table->string('cover_image_path')->nullable();
-            $table->string('ebook_file_path');
+            $table->string('ebook_file_path')->nullable();
+            $table->string('download_path')->nullable();
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->timestamps();
         });
