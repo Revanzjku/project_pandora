@@ -2,10 +2,18 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="h-16 flex items-center justify-between">
             <!-- Brand -->
-            <a href="/" class="flex items-center gap-2">
-                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 grid place-items-center text-white font-bold">P</div>
-                <span class="text-xl font-bold text-slate-900">PANDORA</span>
-            </a>
+            <div class="flex items-center gap-4">
+                @if(request()->routeIs('login') || request()->routeIs('register'))
+                    <!-- Tombol kembali ke beranda (hanya muncul di login/register) -->
+                    <a href="/" class="text-sm text-slate-600 hover:text-sky-700">← Kembali ke Beranda</a>
+                @else
+                    <!-- Logo normal -->
+                    <a href="/" class="flex items-center gap-2">
+                        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 grid place-items-center text-white font-bold">P</div>
+                        <span class="text-xl font-bold text-slate-900">PANDORA</span>
+                    </a>
+                @endif
+            </div>
 
             <!-- Nav menu (desktop) -->
             @if(!request()->routeIs('welcome') && !request()->routeIs('login') && !request()->routeIs('register'))

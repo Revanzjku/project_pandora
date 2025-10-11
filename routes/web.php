@@ -8,14 +8,17 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [PageController::class, 'home'])->name('home');
-    Route::get('/katalog', [PageController::class, 'catalog'])->name('katalog');
+    Route::get('/home', function() {
+        return view('pages.home', ['title' => 'Beranda']);
+    })->name('home');
+    Route::get('/katalog', function() {
+        return view('pages.katalog', ['title' => 'Katalog']);
+    })->name('katalog');
     Route::get('/tentang', [PageController::class, 'about'])->name('tentang');
     Route::get('/read/{ebook:slug}', [PageController::class, 'reader'])->name('read');
-    Route::get('/profile', [PageController::class, 'profile'])->name('profile');
-
-    Route::delete('/profile', [\App\Http\Controllers\UserAccountDelete::class, 'destroy'])
-    ->name('user.destroy'); //User Delete Account
+    Route::get('/profile', function() {
+        return view('pages.profil', ['title' => 'Pengaturan Profil']);
+    })->name('profile');
 
     // Admin Section Routes
     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
