@@ -104,7 +104,7 @@
             <div class="max-w-3xl mx-auto"> 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     <div>
-                        <div class="text-3xl font-bold text-sky-700">1,000+</div>
+                        <div class="text-3xl font-bold text-sky-700">{{ $bookCount }}</div>
                         <div class="text-sm text-slate-600 mt-2">Judul Buku</div>
                     </div>
                     <div>
@@ -116,7 +116,7 @@
                         <div class="text-sm text-slate-600 mt-2">Tersedia</div>
                     </div>
                     <div>
-                        <div class="text-3xl font-bold text-sky-700">50K+</div> 
+                        <div class="text-3xl font-bold text-sky-700">{{ $userCount }}</div> 
                         <div class="text-sm text-slate-600 mt-2">Pengguna Aktif</div>
                     </div>
                 </div>

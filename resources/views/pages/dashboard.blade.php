@@ -24,7 +24,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-sm font-medium text-slate-600">Total Ebook</p>
-                                    <p class="text-2xl font-bold text-slate-900">1,247</p>
+                                    <p class="text-2xl font-bold text-slate-900">{{ number_format($totalEbooks) }}</p>
                                 </div>
                                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500 to-cyan-600 grid place-items-center text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,7 +37,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-sm font-medium text-slate-600">Total Pengguna</p>
-                                    <p class="text-2xl font-bold text-slate-900">2,341</p>
+                                    <p class="text-2xl font-bold text-slate-900">{{ number_format($totalUsers) }}</p>
                                 </div>
                                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 grid place-items-center text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,7 +50,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-sm font-medium text-slate-600">Download Hari Ini</p>
-                                    <p class="text-2xl font-bold text-slate-900">89</p>
+                                    <p class="text-2xl font-bold text-slate-900">{{ number_format($todayDownloads) }}</p>
                                 </div>
                                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 grid place-items-center text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,7 +63,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-sm font-medium text-slate-600">Aktivitas Hari Ini</p>
-                                    <p class="text-2xl font-bold text-slate-900">156</p>
+                                    <p class="text-2xl font-bold text-slate-900">{{ number_format($todayActivities) }}</p>
                                 </div>
                                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 grid place-items-center text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,8 +104,10 @@
                                 <div class="flex items-center justify-between p-4 bg-gradient-to-r from-sky-50 to-cyan-50 rounded-xl">
                                     <div>
                                         <p class="text-sm font-medium text-slate-600">Bulan Ini</p>
-                                        <p class="text-2xl font-bold text-slate-900">248</p>
-                                        <p class="text-xs text-green-600 font-medium">↑ 12% dari bulan lalu</p>
+                                        <p class="text-2xl font-bold text-slate-900">{{ number_format($currentMonthCount) }}</p>
+                                        <p class="text-xs {{ $monthlyGrowth >= 0 ? 'text-green-600' : 'text-red-600' }} font-medium">
+                                            {{ $monthlyGrowth >= 0 ? '↑' : '↓' }} {{ abs($monthlyGrowth) }}% dari bulan lalu
+                                        </p>
                                     </div>
                                     <div class="w-12 h-12 rounded-xl bg-sky-100 grid place-items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,7 +120,7 @@
                                 <div class="flex items-center justify-between p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
                                     <div>
                                         <p class="text-sm font-medium text-slate-600">Rata-rata per Bulan</p>
-                                        <p class="text-2xl font-bold text-slate-900">195</p>
+                                        <p class="text-2xl font-bold text-slate-900">{{ number_format($averageMonthlyCount) }}</p>
                                         <p class="text-xs text-slate-500">Dalam 12 bulan terakhir</p>
                                     </div>
                                     <div class="w-12 h-12 rounded-xl bg-emerald-100 grid place-items-center">
@@ -132,8 +134,8 @@
                                 <div class="flex items-center justify-between p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
                                     <div>
                                         <p class="text-sm font-medium text-slate-600">Bulan Tertinggi</p>
-                                        <p class="text-2xl font-bold text-slate-900">312</p>
-                                        <p class="text-xs text-slate-500">Januari 2025</p>
+                                        <p class="text-2xl font-bold text-slate-900">{{ number_format($peakMonthCount ?? 0) }}</p>
+                                        <p class="text-xs text-slate-500">{{ $peakMonthName }}</p>
                                     </div>
                                     <div class="w-12 h-12 rounded-xl bg-indigo-100 grid place-items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -156,12 +158,12 @@
             // User Registration Chart
             const ctx = document.getElementById('userRegistrationChart').getContext('2d');
             
-            // Sample data - replace with actual data from your backend
+            // Dynamic data from backend
             const monthlyData = {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: @json($chartLabels),
                 datasets: [{
                     label: 'Pengguna Baru',
-                    data: [312, 189, 245, 198, 167, 223, 178, 234, 267, 198, 221, 248],
+                    data: @json($chartData),
                     borderColor: 'rgb(14, 165, 233)',
                     backgroundColor: 'rgba(14, 165, 233, 0.1)',
                     borderWidth: 2,

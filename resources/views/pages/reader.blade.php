@@ -13,12 +13,6 @@
                    class="px-3 py-2 text-sm rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">
                     ← Kembali
                 </a>
-                @if($ebook->download_path)
-                    <a href="{{ $ebook->download_path }}" target="_blank"
-                       class="px-3 py-2 text-sm rounded-lg bg-sky-600 text-white hover:bg-sky-700">
-                        Unduh Buku
-                    </a>
-                @endif
             </div>
         </div>
 
