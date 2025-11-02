@@ -4,7 +4,7 @@
     <div class="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
             <h1 class="heading text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
-                Kelola Ebook
+                Kelola E-book
             </h1>
             <p class="text-slate-600">
                 Mengelola daftar Ebook yang tersedia di sistem.
@@ -12,7 +12,7 @@
         </div>
         <a href="{{ route('admin.ebooks.create') }}" 
            class="px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors">
-            Tambah Ebook Baru
+            Tambah E-book Baru
         </a>
     </div>
 

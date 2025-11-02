@@ -117,7 +117,7 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                             </svg>
-                            Lihat Kutipan
+                            Lihat Sitasi
                         </button>
 
                         <!-- Tombol Kanan: Download dan Baca -->
@@ -128,7 +128,7 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                     </svg>
-                                    Unduh Buku
+                                    Unduh E-book
                                 </button>
                                 <a href="{{ url('read', $selectedEbook['slug']) }}" 
                                 class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-sky-600 to-cyan-600 text-white hover:from-sky-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 shadow-sm hover:shadow-md transition-all duration-200 font-medium text-center flex items-center justify-center gap-2">
@@ -150,7 +150,7 @@
         </div>
     @endif
 
-    <!-- Modal Kutipan -->
+    <!-- Modal Sitasi -->
     @if($showCitationModal && $selectedEbook)
         <div x-data="{
             copied: false,
@@ -206,7 +206,7 @@
             <div @click.away="$wire.closeCitationModal()" 
                 class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full flex flex-col max-h-[85vh] overflow-hidden">
 
-                <!-- Header Modal Kutipan -->
+                <!-- Header Modal Sitasi -->
                 <div class="relative p-6 border-b border-slate-200 bg-gradient-to-r from-emerald-50 to-green-50">
                     <button wire:click="closeCitationModal()" 
                             class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-white/50 rounded-full transition-colors">
@@ -214,15 +214,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
-                    <h2 class="text-xl font-bold text-slate-900 pr-8">Kutipan E-Book</h2>
+                    <h2 class="text-xl font-bold text-slate-900 pr-8">Sitasi E-Book</h2>
                     <p class="text-sm text-slate-600 mt-1">{{ $selectedEbook['title'] }}</p>
                 </div>
 
-                <!-- Body Modal Kutipan -->
+                <!-- Body Modal Sitasi -->
                 <div class="flex-1 overflow-y-auto p-6">
                     <!-- Style Selector -->
                     <div class="mb-6">
-                        <label class="block text-sm font-medium text-slate-700 mb-3">Pilih Gaya Kutipan:</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-3">Pilih Gaya Sitasi:</label>
                         <div class="flex flex-wrap gap-2">
                             @foreach(['apa', 'chicago', 'mla'] as $style)
                                 <button 
@@ -285,7 +285,7 @@
                     </div>
                 </div>
 
-                <!-- Footer Modal Kutipan -->
+                <!-- Footer Modal Sitasi -->
                 <div class="p-6 border-t border-slate-200 bg-slate-50/50">
                     <div class="flex justify-end gap-3">
                         <button wire:click="backToDetail()" 

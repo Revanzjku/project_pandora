@@ -27,7 +27,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('ebooks', \App\Http\Controllers\Admin\EbookController::class)->except(['show', 'store', 'update', 'destroy']);
-        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except(['show', 'store', 'update', 'destroy']);
         Route::get('users', function() {
             return view('admin.user.index', ['title' => 'Kelola Pengguna']);
         })->name('users.index');
