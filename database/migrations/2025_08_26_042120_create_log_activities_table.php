@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('log_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('restrict');
-            $table->foreignId('ebook_id')->constrained()->onDelete('restrict');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('ebook_id')->constrained()->onDelete('cascade');
             $table->enum('activity_type', ['read', 'download', 'cite']);
             $table->timestamps();
         });
