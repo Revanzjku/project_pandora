@@ -7,10 +7,9 @@
                     <!-- Tombol kembali ke beranda (hanya muncul di login/register) -->
                     <a href="/" class="text-sm text-slate-600 hover:text-sky-700">← Kembali ke Beranda</a>
                 @else
-                    <!-- Logo normal -->
-                    <a href="/" class="flex items-center gap-2">
-                        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-500 to-cyan-600 grid place-items-center text-white font-bold">P</div>
-                        <span class="text-xl font-bold text-slate-900">PANDORA</span>
+                    <!-- Logo-only (text removed for compact header) -->
+                    <a href="/" class="flex items-center" aria-label="Pandora home">
+                        <img src="{{ asset('images/pandora_logo.svg') }}" alt="Pandora" class="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain" />
                     </a>
                 @endif
             </div>

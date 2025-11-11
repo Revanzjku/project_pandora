@@ -25,7 +25,7 @@
                 <!-- Illustration -->
                 <div class="relative hidden lg:block">
                     <div class="aspect-[4/3] w-full rounded-2xl bg-gradient-to-br from-sky-100 to-cyan-100 ring-1 ring-slate-200 p-6">
-                        <img src="{{ asset('ilustrasi.png') }}" alt="Ilustrasi Pustaka Digital" class="h-full w-full rounded-xl object-cover">
+                        <img src="{{ asset('images/ilustrasi.png') }}" alt="Ilustrasi Pustaka Digital" class="h-full w-full rounded-xl object-cover">
                     </div>
                 </div>
             </div>

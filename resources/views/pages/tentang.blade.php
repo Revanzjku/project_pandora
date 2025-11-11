@@ -43,7 +43,7 @@
                     </div>
                     <div class="relative">
                         <div class="aspect-[4/3] w-full rounded-2xl bg-gradient-to-br from-sky-100 to-cyan-100 ring-1 ring-slate-200 p-8">
-                            <img src="{{ asset('pustaka_digital.jpeg') }}" alt="Ilustrasi Pustaka Digital" class="h-full w-full rounded-xl object-cover">
+                            <img src="{{ asset('images/pandora_logo_blue.png') }}" alt="Ilustrasi Pustaka Digital" class="h-full w-full rounded-xl object-cover">
                         </div>
                     </div>
                 </div>
