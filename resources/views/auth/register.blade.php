@@ -17,6 +17,7 @@
                     <div>
                         <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Nama </label>
                         <input type="text" id="name" name="name" required
+                            value="{{ old('name') }}"
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="Masukkan nama">
                         @error('name')
@@ -27,6 +28,7 @@
                     <div>
                         <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email</label>
                         <input type="email" id="email" name="email" required
+                            value="{{ old('email') }}"
                             class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 focus:outline-none transition-colors"
                             placeholder="nama@email.com">
                         @error('email')
